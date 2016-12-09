@@ -18,22 +18,7 @@ namespace InvMVC.Controllers
         public ActionResult Index()
         {
             var ativos = db.Ativos.Include(a => a.Usuario);
-            return View(ativos.ToList());
-        }
-
-        // GET: Ativo/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ativo ativo = db.Ativos.Find(id);
-            if (ativo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ativo);
+            return View(ativos);
         }
 
         // GET: Ativo/Create

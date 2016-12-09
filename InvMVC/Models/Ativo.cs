@@ -11,15 +11,15 @@ namespace InvMVC.Models
         public int AtivoId { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50, ErrorMessage = "Deve possuir no mínimo 5 caractéres", MinimumLength = 5)]
         public string Descricao { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [StringLength(20, ErrorMessage = "Deve possuir no mínimo 3 caractéres", MinimumLength = 3)]
         public string Tipo { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [StringLength(30, ErrorMessage = "Deve possuir no mínimo 5 caractéres", MinimumLength = 5)]
         public string Local { get; set; }
 
         public int UsuarioId { get; set; }

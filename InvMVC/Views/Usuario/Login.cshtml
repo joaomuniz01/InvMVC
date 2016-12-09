@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Entrar";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Inventário</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <strong>
+                    @Html.ActionLink("Inventário", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </strong>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <br />
+        <h2>Acesso</h2>
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-warning">
+                <br />
+                @ViewBag.Message
+            </div>
+        }
+        <br />
+        <form action="/Usuario/Login" method="post">
+            <div>
+                <label>E-mail</label>
+                <input type="email" name="Email" required class="form-control" />
+            </div>
+            <div>
+                <label>Senha</label>
+                <input type="password" name="Senha" required class="form-control" />
+            </div>
+            <br />
+            <button class="btn btn-success" type="submit">
+                <span class="glyphicon glyphicon-log-in"></span>
+                Entrar
+            </button>
+        </form>
+        <hr />
+    </div>
+</body>
+</html>
+

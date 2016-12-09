@@ -1,10 +1,10 @@
 ﻿@model InvMVC.Models.Ativo
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Adicionar";
 }
 
-<h2>Create</h2>
+<h2>Adicionar</h2>
 
 
 @using (Html.BeginForm()) 
@@ -48,15 +48,15 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-4 col-md-10">
+                <input type="submit" value="Adicionar" class="btn btn-warning" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @section Scripts {

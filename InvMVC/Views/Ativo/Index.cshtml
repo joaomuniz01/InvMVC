@@ -1,51 +1,49 @@
 ﻿@model IEnumerable<InvMVC.Models.Ativo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Inventário";
 }
 
-<h2>Index</h2>
+<h2>Inventário</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Local)
-        </th>
-        <th></th>
+        <th>#</th>
+        <th>Descrição</th>
+        <th>Tipo</th>
+        <th>Localização</th>
+        <th>Adicionado por</th>
+        <th>Ações</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Local)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AtivoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AtivoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AtivoId })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.AtivoId)</td>
+            <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+            <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
+            <td>@Html.DisplayFor(modelItem => item.Local)</td>
+            <td>@Html.DisplayFor(modelItem => item.Usuario.Nome)</td>
+            <td>
+                <div class="btn-group">
+                    <a href="/Ativo/Edit/@item.AtivoId" class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Editar
+                    </a>
+                    <a href="/Ativo/Delete/@item.AtivoId" class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        Apagar
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
 </table>
+<p>
+    <div class="btn-group">
+        <a href="/Ativo/Create" class="btn-sm btn-success">
+            <span class="glyphicon glyphicon-plus"></span>
+            Adicionar Novo
+        </a>
+    </div>
+</p>

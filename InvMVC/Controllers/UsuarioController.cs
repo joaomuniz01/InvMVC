@@ -20,21 +20,6 @@ namespace InvMVC.Controllers
             return View(db.Usuarios.ToList());
         }
 
-        // GET: Usuario/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(usuario);
-        }
-
         // GET: Usuario/Create
         public ActionResult Create()
         {
@@ -113,6 +98,37 @@ namespace InvMVC.Controllers
             db.Usuarios.Remove(usuario);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //GET: /Usuario/Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        //POSt: /Usuario/Login
+        public ActionResult Login(FormCollection form)
+        {
+            string email = form["Email"];
+            string senha = form["Senha"];
+
+            using (AtivoContext ctx = new AtivoContext())
+            {
+                Usuario user = ctx.Usuarios
+                    .SingleOrDefault(u => u.Email == email && u.Senha == senha);
+
+                if (user != null)
+                {
+                    Session["usuario"] = user;
+                    Session.Timeout = 1440;
+                    return RedirectToAction("Index");
+                }
+            }
+
+            ViewBag.Message = "Acesso não autorizado";
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)
